@@ -1,0 +1,46 @@
+server.port=${PORT:0}
+##server.port=8065
+configuracion.texto=Configurando Ambiente Produccion
+configuracion.autor.nombre= Angel Alonzo
+configuracion.autor.email=angel.alonzo@arysoluciones.com
+configuracion.SP.buscacliente=sp_ccliente_datos
+configuracion.SP.buscadatos=sp_datos_cliente
+configuracion.SP.fonos=sp_lista_fonosdirec
+configuracion.SP.colocaciones=sp_informe_colocaciones_menuales
+configuracion.SP.cotizacion=sp_datos_cotizxejec
+configuracion.SP.datos=sp_datos_bienes
+configuracion.SP.direccion=sp_lista_dircliente
+configuracion.SP.cobranza=sp_lista_ope_gtos_cob
+configuracion.SP.relacion=sp_lista_relacioncliente
+
+mensajes.1 = Ok
+mensajes.2 = No hay Datos Para Mostrar 
+
+spring.application.name=MS_Comercial
+
+##Configurar Instancia en Eureka
+eureka.instance.instance-id=${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+##Registro del microservicio en Eureka Server
+##eureka.client.service-url.defautlZone=http://localhost:8761/eureka
+eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka
+
+##Configurar DataSource
+##spring.datasource.url=jdbc:sqlserver://localhost:1433;databaseName=BD_Leasing
+##spring.datasource.url=jdbc:sqlserver://192.168.31.21\\SLSERVER2012;databaseName=BD_Leasing
+##String conexion Linux
+spring.datasource.url=jdbc:sqlserver://192.168.31.21\\SLSERVER2012:1433;databaseName=BD_Leasing
+spring.datasource.username=sa
+spring.datasource.password=123456
+spring.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
+spring.jpa.database-platform=org.hibernate.dialect.SQLServerDialect
+
+##Configurar Logger
+logging.level.org.springframework.web=${LOG_LEVEL_SPRING:info}
+logging.level.web=${LOG_LEVEL_SPRING:info}
+logging.config=classpath:log4j2.xml
+
+##Configurando timeout de eureka
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+ribbon.ConnectTimeout: 9000
+ribbon.ReadTimeout: 30000
